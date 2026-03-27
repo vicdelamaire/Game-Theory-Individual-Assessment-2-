@@ -1,0 +1,34 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+# parameters
+p_prior = 0.5
+k = 1.5
+
+# range of p
+p = np.linspace(0, 1, 100)
+
+# expected utilities
+eu_c = p * 2 + (1 - p) * (2 - k)
+eu_r = 1
+
+# cut-off
+p_star = k / (1 + k)
+
+# plot
+plt.plot(p, eu_c, label="contribute")
+plt.plot(p, eu_r, label="refuse")
+plt.axvline(p_star, linestyle='--')
+
+plt.xlabel("p")
+plt.ylabel("utility")
+plt.legend()
+plt.show()
+
+# output
+print("p* =", p_star)
+
+if p_prior >= p_star:
+    print("parents contribute")
+else:
+    print("parents refuse")
